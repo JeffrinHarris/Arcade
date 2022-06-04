@@ -10,6 +10,9 @@ public class player : MonoBehaviour
     public float speed;
     public Vector2 jumpHeight;
     public Animator animator;
+    public Chakra chakra;
+    public Transform LaunchOffset;
+
     private SpriteRenderer _renderer;
     void Start()
     {
@@ -26,11 +29,11 @@ public class player : MonoBehaviour
 
         if (mx > 0f) {
             rb.velocity = new Vector2 (mx * speed, rb.velocity.y);
-            _renderer.flipX = false;
+            transform.rotation = Quaternion.identity;
         }
         else if (mx < 0f) {
             rb.velocity = new Vector2 (mx * speed, rb.velocity.y);
-            _renderer.flipX = true;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         } 
         else {
             rb.velocity = new Vector2 (0,rb.velocity.y);
@@ -41,6 +44,10 @@ public class player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))  //makes player jump
         {
             GetComponent<Rigidbody2D>().AddForce(jumpHeight, ForceMode2D.Impulse);
+        }
+
+        if (Input.GetKeyDown(KeyCode.E)) {
+            Instantiate(chakra, LaunchOffset.position, transform.rotation);
         }
     }
 }
