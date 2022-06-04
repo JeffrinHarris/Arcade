@@ -9,6 +9,7 @@ public class player : MonoBehaviour
     Rigidbody2D rb;
     public float speed;
     public Vector2 jumpHeight;
+    public Animator animator;
     void Start()
     {
         t = GetComponent<Transform>();
@@ -18,6 +19,9 @@ public class player : MonoBehaviour
     {
         float mx=Input.GetAxis("Horizontal");
         float gx=Input.GetAxis("Vertical");
+
+        animator.SetFloat("HorizontalAxis", mx);
+
         if (mx > 0f) {
             rb.velocity = new Vector2 (mx * speed, rb.velocity.y);
         }
