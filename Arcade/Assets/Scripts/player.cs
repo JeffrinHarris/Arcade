@@ -12,6 +12,7 @@ public class player : MonoBehaviour
     public Animator animator;
     public Chakra chakra;
     public Transform LaunchOffset;
+    Chakra chakraObj;
 
     private SpriteRenderer _renderer;
     void Start()
@@ -47,7 +48,9 @@ public class player : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.E)) {
-            Instantiate(chakra, LaunchOffset.position, transform.rotation);
+            if (chakraObj == null) {
+                chakraObj = Instantiate(chakra, LaunchOffset.position, transform.rotation);
+            }
         }
     }
 }
