@@ -53,4 +53,14 @@ public class player : MonoBehaviour
             }
         }
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        animator.SetBool("isGrounded", true);
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        animator.SetBool("isGrounded", false);
+    }
 }
